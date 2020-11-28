@@ -12,9 +12,6 @@ const Nav = () => {
                     <img src={logo} alt = "logo"></img>
                 </div>
             <ul>
-                
-                <li >Collections</li>
-                <li>Designs</li>
             </ul>      
         </NavStyle>
     )
