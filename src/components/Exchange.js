@@ -2,16 +2,16 @@ import React , { useState }from 'react'
 import { useQuery } from 'react-query'
 import styled from 'styled-components'
 
-const fetchExchange = async (currency) => {
-    const response  = await fetch(`https://api.ratesapi.io/api/latest?base=${currency}`)
+const fetchExchange = async (greece) => {
+    const response  = await fetch(`https://api.covid19api.com/country/greece/status/confirmed/live`)
     const data = await response.json();
     return data;
 }
 
 const Exchange = () => {
-    const [currency , setCurrency ] = useState("EUR")
+    const [greece , setGreece ] = useState("EUR")
 
-    const { status , data  } = useQuery( [currency] , fetchExchange );
+    const { status , data  } = useQuery( "live" , fetchExchange );
         if(status === "loading") return <div>loading...</div>;
         if(status === "error" ) return <div>error!</div>;
         
@@ -19,10 +19,8 @@ const Exchange = () => {
     return (
         <Home>
             <div className="text">
-            <h1>Showing Currency {currency}</h1>
-                <button onClick = {() => setCurrency("EUR")}>EUR</button>
-                <button onClick = {() => setCurrency("USD")}>USD</button>
-                <button onClick = {() => setCurrency("CAD")}>CAD</button>
+            <h1>Showing Currency {greece}</h1>
+                <button onClick = {() => setGreece("EUR")}>EUR</button>
             </div>
             <pre>{JSON.stringify(data , null , 2)}</pre>
         
